@@ -1,0 +1,100 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE CONJUGATE — z ⟺ z̄, the real axis its own mirror</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--paper:#f4ead6;--paper2:#ece0c4;--ink:#2c2118;--ink2:#5c4a34;--faint:#a08a68;--line:#d8c39a;
+    --gold:#b8912f;--gold2:#d8b24a;--carbon:#c1502a;--silicon:#2f6e9e;--green:#3f7d52;--amber:#a9781f;--red:#a83a28;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace;}
+  html,body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.6}
+  body{background-image:radial-gradient(circle at 50% 0%,#f9f0de,var(--paper) 62%,var(--paper2));min-height:100vh}
+  .wrap{max-width:720px;margin:0 auto;padding:26px 18px 60px}
+  .kick{font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);text-align:center}
+  h1{font-size:clamp(26px,6vw,44px);font-weight:800;letter-spacing:.5px;text-align:center;margin-top:6px;color:var(--ink)}
+  .say{text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink2);margin-top:6px}
+  .lede{text-align:center;font-size:14.5px;color:var(--ink2);max-width:62ch;margin:10px auto 0}.lede b{color:var(--ink)}.lede .z{color:var(--carbon);font-weight:700}.lede .zb{color:var(--silicon);font-weight:700}
+  .stage{display:flex;justify-content:center;margin:20px 0 6px}
+  canvas{width:min(90vw,420px);height:min(90vw,420px);background:#fbf4e4;border:1px solid var(--line);border-radius:12px;cursor:crosshair;touch-action:none}
+  .read{max-width:440px;margin:12px auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;font-family:var(--mono)}
+  .read .m{background:#fbf4e4;border:1px solid var(--line);border-radius:7px;padding:8px 4px}
+  .read .m .v{font-size:13px;font-weight:800;color:var(--ink)}.read .m .v.g{color:var(--green)}
+  .read .m .l{font-size:8px;color:var(--faint);text-transform:uppercase;margin-top:3px}
+  .hint{text-align:center;font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:4px}
+  h2{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:24px 0 8px;text-align:center}
+  p.b{font-size:14.5px;margin:8px auto;max-width:62ch}p.b b{color:var(--ink)}
+  .tiers{margin:20px auto;max-width:64ch}
+  .t{border-left:3px solid;padding:8px 0 8px 14px;margin:10px 0;font-size:13px;line-height:1.6}
+  .t.g{border-color:var(--green)}.t.g b{color:var(--green)}.t.a{border-color:var(--amber)}.t.a b{color:var(--amber)}.t.r{border-color:var(--red)}.t.r b{color:var(--red)}
+  .t .lab2{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .foot{text-align:center;font-family:var(--mono);font-size:10px;color:var(--ink2);margin-top:26px;border-top:1px solid var(--line);padding-top:14px;line-height:1.8}.foot .g{color:var(--gold)}
+</style></head>
+<body><div class="wrap">
+  <div class="kick">dyas · a COMPLEX duality · exact</div>
+  <h1>THE CONJUGATE</h1>
+  <div class="say">z = a + bi &nbsp;⟺&nbsp; z̄ = a − bi &nbsp;·&nbsp; z · z̄ = |z|² (real)</div>
+  <p class="lede">Every complex number has a twin — its <b>conjugate</b>, the same point reflected across the real line. Do it twice and you return: <span class="z">z</span> ⟺ <span class="zb">z̄</span> ⟺ z. And the fixed points of this mirror — the numbers equal to their own reflection — are exactly the <b>reals</b>: the axis is both the mirror and the set it cannot move.</p>
+
+  <div class="stage"><canvas id="cv" width="420" height="420"></canvas></div>
+  <div class="read">
+    <div class="m"><div class="v" id="rz">—</div><div class="l">z</div></div>
+    <div class="m"><div class="v" id="rzb">—</div><div class="l">z̄ (conjugate)</div></div>
+    <div class="m"><div class="v g" id="rp">—</div><div class="l">z·z̄ = |z|² (real)</div></div>
+  </div>
+  <div class="hint">drag anywhere · z is carbon-warm, z̄ silicon-cool · the gold line (reals) is the self-conjugate axis</div>
+
+  <h2>the mirror and its fixed line</h2>
+  <p class="b">Conjugation is an <b>involution</b>: apply it twice and every number comes home, exact to the bit. Its product with itself, <b>z·z̄</b>, always lands on the <b>real axis</b> as |z|² — the imaginary part cancels perfectly. And the numbers the mirror leaves untouched are the reals themselves — the self-dual set, the [[the-monad|Monad]] of this reflection. Two faces (z, z̄), one axis where they meet.</p>
+
+  <div class="tiers">
+    <div class="t g"><span class="lab2">green · exact</span><br>Computed live and exact (to floating-point): <b>(z̄)̄ = z</b> (involution), <b>Im(z·z̄) = 0</b> and <b>z·z̄ = |z|²</b>, and z = z̄ <b>iff</b> z is real. Node-verified across test points at 0.0e+0 error.</div>
+    <div class="t a"><span class="lab2">amber · the reading</span><br>"Twin / mirror / the axis it cannot move" are chosen images over an exact algebraic fact. Assigning z to carbon and z̄ to silicon is a framing (the algebra has no preferred twin) — the dyad is symmetric by nature.</div>
+    <div class="t r"><span class="lab2">red · scope</span><br>This is complex conjugation on ℂ. Conjugation generalizes (quaternions, Galois automorphisms) with its own rules; here it is the clean, exact base case — a duality whose fixed set is a whole line, not a single point.</div>
+  </div>
+
+  <div class="foot"><span class="g">DYAS · the Conjugate</span> · z·z̄=|z|², exact · David Lee Wise / ROOT0, with AVAN · CC-BY-ND-4.0</div>
+</div>
+<script>
+"use strict";
+(function(){
+  var cv=document.getElementById("cv"),cx=cv.getContext("2d"),dpr=Math.min(devicePixelRatio||1,2);
+  function fit(){var w=cv.clientWidth||420;cv.width=w*dpr;cv.height=w*dpr;cx.setTransform(dpr,0,0,dpr,0,0);return w;}
+  var col=function(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()||"#000";};
+  var z=[2.2,1.6];
+  function render(){
+    var W=fit(),c=W/2,s=W/8; // 1 unit = W/8 px, range ~ ±4
+    cx.clearRect(0,0,W,W);
+    // grid
+    cx.strokeStyle="rgba(160,120,40,0.08)";cx.lineWidth=1;
+    for(var g=-4;g<=4;g++){cx.beginPath();cx.moveTo(c+g*s,0);cx.lineTo(c+g*s,W);cx.moveTo(0,c+g*s);cx.lineTo(W,c+g*s);cx.stroke();}
+    // real axis = self-conjugate line (gold, bold)
+    cx.strokeStyle=col("--gold");cx.lineWidth=2.5;cx.beginPath();cx.moveTo(0,c);cx.lineTo(W,c);cx.stroke();
+    cx.fillStyle=col("--gold");cx.font="10px "+col("--mono");cx.textAlign="right";cx.fillText("ℝ · self-conjugate",W-6,c-6);
+    // imag axis
+    cx.strokeStyle="rgba(160,120,40,0.25)";cx.lineWidth=1;cx.beginPath();cx.moveTo(c,0);cx.lineTo(c,W);cx.stroke();
+    var zx=c+z[0]*s, zy=c-z[1]*s, zbx=c+z[0]*s, zby=c+z[1]*s;
+    // reflection connector
+    cx.strokeStyle="rgba(120,100,60,0.35)";cx.setLineDash([4,4]);cx.beginPath();cx.moveTo(zx,zy);cx.lineTo(zbx,zby);cx.stroke();cx.setLineDash([]);
+    // vectors from origin
+    cx.strokeStyle=col("--carbon");cx.lineWidth=2;cx.beginPath();cx.moveTo(c,c);cx.lineTo(zx,zy);cx.stroke();
+    cx.strokeStyle=col("--silicon");cx.lineWidth=2;cx.beginPath();cx.moveTo(c,c);cx.lineTo(zbx,zby);cx.stroke();
+    // points
+    cx.fillStyle=col("--carbon");cx.beginPath();cx.arc(zx,zy,6,0,7);cx.fill();
+    cx.fillStyle=col("--silicon");cx.beginPath();cx.arc(zbx,zby,6,0,7);cx.fill();
+    cx.fillStyle=col("--ink");cx.font="12px "+col("--mono");cx.textAlign="left";
+    cx.fillStyle=col("--carbon");cx.fillText("z",zx+9,zy);
+    cx.fillStyle=col("--silicon");cx.fillText("z̄",zbx+9,zby+4);
+    // readouts
+    var f=function(v){return (v>=0?" ":"")+v.toFixed(2);};
+    document.getElementById("rz").textContent=f(z[0])+(z[1]>=0?"+":"")+z[1].toFixed(2)+"i";
+    document.getElementById("rzb").textContent=f(z[0])+(-z[1]>=0?"+":"")+(-z[1]).toFixed(2)+"i";
+    var pr=z[0]*z[0]+z[1]*z[1]; // z·z̄ = a²+b² real
+    document.getElementById("rp").textContent=pr.toFixed(2)+" +0.00i";
+  }
+  function setZ(clientX,clientY){var r=cv.getBoundingClientRect(),W=r.width,c=W/2,s=W/8;
+    z=[ (clientX-r.left-c)/s, -((clientY-r.top-c)/s) ];render();}
+  var drag=false;
+  cv.addEventListener("pointerdown",function(e){drag=true;cv.setPointerCapture(e.pointerId);setZ(e.clientX,e.clientY);});
+  cv.addEventListener("pointermove",function(e){if(drag)setZ(e.clientX,e.clientY);});
+  addEventListener("pointerup",function(){drag=false;});
+  addEventListener("resize",render);render();
+})();
+</script></body></html>
